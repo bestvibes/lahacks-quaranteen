@@ -7,7 +7,7 @@ services:
       - POSTGRES_PASSWORD=lahacks2020
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:80
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; python manage.py migrate; python manage.py runserver 0.0.0.0:80'
     environment:
       - SECRET_KEY=)y2eio3x3@l0efay3=6ky&n!dx)$ebp&otd$f2k(enf9q))rrt
     volumes:

@@ -27,12 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '35.236.56.170',
+    'localhost',
 ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'gamify',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
