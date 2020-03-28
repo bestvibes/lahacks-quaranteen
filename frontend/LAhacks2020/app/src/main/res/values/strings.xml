@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">LAhacks2020</string>
-    <string name="title_home">Home</string>
+    <string name="title_leaderboard">Leaderboard</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="login_welcome">Welcome to being quarantined, Please Login to continue </string>
     <string name="login_button">Login with Facebook</string>
 
