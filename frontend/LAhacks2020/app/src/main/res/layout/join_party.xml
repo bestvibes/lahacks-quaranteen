@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/w">
 
     <TextView
         android:id="@+id/textView"
@@ -12,6 +13,7 @@
         android:layout_height="58dp"
         android:gravity="center|clip_vertical"
         android:text="Enter Your Unique Code"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,6 +41,7 @@
         android:layout_height="58dp"
         android:text="JOIN PARTY"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="36sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,6 +57,7 @@
         android:layout_height="58dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -3,6 +3,6 @@
     <string name="title_leaderboard">Leaderboard</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="login_welcome">Welcome to being quarantined, Please Login to continue </string>
-    <string name="login_button">Login with Facebook</string>
+    <string name="login_button">Login with Google</string>
 
 </resources>
