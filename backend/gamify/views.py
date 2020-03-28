@@ -7,9 +7,11 @@ import json
 def login(request, format=None):
 	email = request.POST['email']
 	response = HttpResponse()
-	if !User.get(email=email):
+	if not User.get(email=email):
 		# Need to create a user
-		User.create(email=email, name=request.POST['name'])
+		u =	User.create(email=email, name=request.POST['name'])
+		user_serialized = json.dumps(u, default=str)
+		response.content = user_serialized
 		response.status_code = 201
 		return response
 	else:
