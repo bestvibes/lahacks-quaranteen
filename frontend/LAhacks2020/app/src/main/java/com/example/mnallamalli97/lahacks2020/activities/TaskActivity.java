@@ -19,6 +19,7 @@ import androidx.lifecycle.Observer;
 import com.example.mnallamalli97.lahacks2020.R;
 import com.example.mnallamalli97.lahacks2020.TaskInstance;
 import com.example.mnallamalli97.lahacks2020.TaskViewModel;
+import com.example.mnallamalli97.lahacks2020.UserDataViewModel;
 import com.example.mnallamalli97.lahacks2020.Verification;
 import com.example.mnallamalli97.lahacks2020.VerificationViewModel;
 
@@ -32,13 +33,14 @@ public class TaskActivity extends AppCompatActivity {
     private Button cameraButton;
     Uri imageUri;
     String mCameraFileName;
+    TaskInstance task;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_screen);
 
-        TaskInstance task = TaskViewModel.getUserTasks().getValue().get(getIntent().getIntExtra("task", 0));
+        task = TaskViewModel.getUserTasks().getValue().get(getIntent().getIntExtra("task", 0));
         TextView header = findViewById(R.id.taskNameTextview);
         header.setText(task.getMasterTask().getName());
 
@@ -97,24 +99,26 @@ public class TaskActivity extends AppCompatActivity {
                 //File file = new File(mCameraFileName);
                 File file = new File(imageUri.getPath());
 
-                //intent needs to hold TaskInstance, below must be tested once connected
-
-                /*
-                int user_id = data.user.getUser_id();
-                String verificationURL = data.task.getMasterTask().getVerificationMLModeURL();
-                if (verificationURL.equals("/verify/apple/)"){
-                    VerificationViewModel.verifyApple(user_id, file);
-                }
+                if (UserDataViewModel.getUpdatedUserLiveData().getValue() != null){
+                    int user_id = UserDataViewModel.getUpdatedUserLiveData().getValue().getUser_id();
+                    String verificationURL = task.getMasterTask().getVerificationMLModelURL();
+                    if (verificationURL.equals("/verify/apple/")){
+                        VerificationViewModel.verifyApple(user_id, file);
+                    }
                 else if (verificationURL.equals("/verify/video/")){
-                    VerificationViewModel.verifyVideo(user_id, file);
+                        VerificationViewModel.verifyVideo(user_id, file);
+                    }
+                    else if (verificationURL.equals("/verify/book/")){
+                        VerificationViewModel.verifyBook(user_id, file);
+                    }
+                    else if (verificationURL.equals("/verify/sunrise/")){
+                        VerificationViewModel.verifySunrise(user_id, file);
+                    }
                 }
-                else if (verificationURL.equals("/verify/book/")){
-                    VerificationViewModel.verifyBook(user_id, file);
+                else{
+                    Log.e("VerificationError", "unable to get userId");
                 }
-                else if (verificationURL.equals("/verify/sunrise/")){
-                    VerificationViewModel.verifySunrise(user_id, file);
-                }
-                */
+
                 if (!file.exists()) {
                     file.mkdir();
                 }
