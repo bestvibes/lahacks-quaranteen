@@ -8,13 +8,14 @@ from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 from rest_framework.viewsets import ModelViewSet
 
-from gamify.models import Team, User
-from gamify.serializers import UserSerializer
+from gamify.models import Team, User, ChallengeInstance
+from gamify.serializers import UserSerializer, ChallengeInstanceSerializer
 from django.http import HttpResponse
 from django.core import serializers
 
 from rest_framework.views import APIView 
 from gamify.models import User
+
 
 @api_view(['POST'])
 def login(request, format=None):
@@ -33,6 +34,7 @@ def login(request, format=None):
 		response.content = user_serialized
 		response.status_code = 201
 		return response
+
 
 @api_view(['POST'])
 def createTeam(request):
@@ -83,7 +85,7 @@ def leaveTeam(request):
 def joinTeam(request):
     """
     Join a team
-    inputs: JSON with two field "user_id", "join_code"
+    inputs: JSON with two fields "user_id", "join_code"
     """
     data = JSONParser().parse(request)
     team_to_join = Team.objects.get(join_code=data["join_code"])
@@ -103,3 +105,61 @@ class UserViewSet(ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+@api_view(['GET'])
+def listChallenges(request):
+    return JsonResponse(serializers.serialize("json", ChallengeInstance.objects.all()), status=200, safe=False)
+
+
+@api_view(['POST'])
+def joinChallenge(request):
+    """
+    Join a challenge
+    inputs: JSON with three fields "challenge_id", "team_id", "user_id"
+    """
+    data = JSONParser().parse(request)
+    challenge = ChallengeInstance.objects.get(id=data["challenge_id"])
+    user = User.objects.get(id=data["user_id"])
+    team = Team.objects.get(id=data["team_id"])
+
+    if (not user.team_leader):
+        return JsonResponse("User not team leader", status=401)
+    if (team in challenge.teams):
+        return JsonResponse("Team already joined!", status=200)
+    if (challenge.is_in_progress() or challenge.has_ended()):
+        return JsonResponse("Challenge has already started!", status=403)
+
+    challenge.teams.add(team)
+    challenge.save()
+    return JsonResponse(serializers.serialize("json", ChallengeInstance.objects.filter(id=challenge.id)), status=200, safe=False)
+
+
+@api_view(['POST'])
+def getChallenge(request):
+    """
+    Get details about a challenge
+    inputs: JSON with one field "challenge_id"
+    """
+    data = JSONParser().parse(request)
+    challenge = ChallengeInstance.objects.get(id=data["challenge_id"])
+    return JsonResponse(serializers.serialize("json", challenge, status=200, safe=False))
+
+
+@api_view(['POST'])
+def getUserTasks(request):
+    """
+    Get all the tasks for a user.
+    inputs: JSON with one field "user_id"
+    """
+    data = JSONParser().parse(request)
+    user = User.objects.get(id=data["user_id"])
+    return JsonResponse(serializers.serialize("json", user.tasks, status=200, safe=False))
+
+
+class ChallengeInstanceViewSet(ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = ChallengeInstance.objects.all()
+    serializer_class = ChallengeInstanceSerializer
