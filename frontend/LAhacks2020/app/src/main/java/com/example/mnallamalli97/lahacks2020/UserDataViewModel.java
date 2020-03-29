@@ -16,12 +16,14 @@ import java.util.List;
 
 public class UserDataViewModel extends ViewModel {
     private MutableLiveData<List<User>> users;
+    private MutableLiveData<User> updatedUser;
 
     public UserDataViewModel() {
         users = new MutableLiveData<List<User>>();
+        updatedUser = new MutableLiveData<User>();
     }
 
-    public void loadData() {
+    public void loadListUsers() {
         if (users.getValue() == null){
             UserService service = NetworkUtils.getRetrofitInstance().create(UserService.class);
             Call<List<User>> call = service.listUsers();
@@ -39,7 +41,27 @@ public class UserDataViewModel extends ViewModel {
         }
     }
 
-    public LiveData<List<User>> getLiveData(){
+    public void updateUser(int user_id, String name) {
+        UserService service = NetworkUtils.getRetrofitInstance().create(UserService.class);
+        Call<User> call = service.updateUserName(user_id, name);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                updatedUser.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                users.setValue(null);
+            }
+        });
+    }
+
+    public LiveData<List<User>> getUsersLiveData(){
         return users;
+    }
+
+    public LiveData<User> getUpdatedUserLiveData() {
+        return updatedUser;
     }
 }
