@@ -11,6 +11,6 @@ import retrofit2.http.Field;
 import retrofit2.http.POST;
 
 public interface TaskService {
-    @POST("/tasks/byuser")
+    @POST("/tasks/byuser/")
     Call<List<TaskInstance>> getUserTasks(@Body UserId body);
 }

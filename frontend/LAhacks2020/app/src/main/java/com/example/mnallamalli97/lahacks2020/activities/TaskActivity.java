@@ -6,10 +6,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.mnallamalli97.lahacks2020.R;
+import com.example.mnallamalli97.lahacks2020.User;
+import com.example.mnallamalli97.lahacks2020.Verification;
+import com.example.mnallamalli97.lahacks2020.VerificationViewModel;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -18,6 +23,7 @@ import java.util.Date;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 public class TaskActivity extends AppCompatActivity {
 
@@ -36,6 +42,17 @@ public class TaskActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //open the camera and take a picture
                 cameraIntent();
+            }
+        });
+
+        VerificationViewModel.getVerification().observe(this, new Observer<Verification>() {
+            @Override
+            public void onChanged(Verification verification) {
+                if (verification == null){
+                    Toast.makeText(TaskActivity.this, "Verification unsuccessful!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Log.d("Verification", "verified " + verification.isVerified());
             }
         });
     }
@@ -72,6 +89,25 @@ public class TaskActivity extends AppCompatActivity {
                 }
                 //File file = new File(mCameraFileName);
                 File file = new File(imageUri.getPath());
+
+                //intent needs to hold TaskInstance, below must be tested once connected
+
+                /*
+                int user_id = data.user.getUser_id();
+                String verificationURL = data.task.getMasterTask().getVerificationMLModeURL();
+                if (verificationURL.equals("/verify/apple/)"){
+                    VerificationViewModel.verifyApple(user_id, file);
+                }
+                else if (verificationURL.equals("/verify/video/")){
+                    VerificationViewModel.verifyVideo(user_id, file);
+                }
+                else if (verificationURL.equals("/verify/book/")){
+                    VerificationViewModel.verifyBook(user_id, file);
+                }
+                else if (verificationURL.equals("/verify/sunrise/")){
+                    VerificationViewModel.verifySunrise(user_id, file);
+                }
+                */
                 if (!file.exists()) {
                     file.mkdir();
                 }

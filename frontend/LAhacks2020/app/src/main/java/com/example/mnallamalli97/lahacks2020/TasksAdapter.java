@@ -7,19 +7,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> {
 
     // List to store all the contact details
-    private ArrayList<MasterTask> tasksList;
+    private ArrayList<TaskInstance> tasksList;
     private OnTaskListener mOnTaskListener;
     private Context mContext;
 
     // Counstructor for the Class
-    public TasksAdapter(ArrayList<MasterTask> tasksList, Context context, OnTaskListener onTaskListener) {
+    public TasksAdapter(ArrayList<TaskInstance> tasksList, Context context, OnTaskListener onTaskListener) {
         this.tasksList = tasksList;
         this.mContext = context;
         this.mOnTaskListener = onTaskListener;
@@ -44,10 +46,9 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
     // This method is called when binding the data to the views being created in RecyclerView
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        final MasterTask task = tasksList.get(position);
-
+        final TaskInstance task = tasksList.get(position);
         // Set the data to the views here
-        holder.setTaskName(task.getMasterChallenge().getName());
+        holder.setTaskName(task.getMasterTask().getMasterChallenge().getName());
     }
 
     // This is your ViewHolder class that helps to populate data to the view
