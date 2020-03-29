@@ -12,15 +12,12 @@ public class Team {
     private String teamName;
     @SerializedName("join_code")
     private String joinCode;
-    @SerializedName("leader")
-    private User leader;
 
-    public Team(int id, User[] teamMembers, String teamName, String joinCode, User leader){
+    public Team(int id, User[] teamMembers, String teamName, String joinCode){
         this.id = id;
         this.teamMembers = teamMembers;
         this.teamName = teamName;
         this.joinCode = joinCode;
-        this.leader = leader;
     }
 
     public int getId() {
@@ -37,9 +34,5 @@ public class Team {
 
     public String getJoinCode(){
         return joinCode;
-    }
-
-    public User getLeader(){
-        return leader;
     }
 }

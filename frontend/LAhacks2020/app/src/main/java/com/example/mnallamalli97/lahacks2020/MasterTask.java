@@ -3,20 +3,34 @@ package com.example.mnallamalli97.lahacks2020;
 import com.google.gson.annotations.SerializedName;
 
 public class MasterTask {
-    @SerializedName("masterChallenger")
+    @SerializedName("id")
+    private int id;
+    @SerializedName("name")
+    private String name;
+    @SerializedName("challenge")
     private MasterChallenge masterChallenge;
     @SerializedName("description")
     private String description;
-    @SerializedName("verificationMLModelUrl")
+    @SerializedName("verification_url")
     private String verificationMLModelURL;
-    @SerializedName("pointValue")
+    @SerializedName("point_value")
     private int pointValue;
 
-    public MasterTask(MasterChallenge masterChallenge, String description, String verificationMLModelURL, int pointValue){
+    public MasterTask(int id, String name, MasterChallenge masterChallenge, String description, String verificationMLModelURL, int pointValue){
+        this.id = id;
+        this.name = name;
         this.masterChallenge = masterChallenge;
         this.description = description;
         this.verificationMLModelURL = verificationMLModelURL;
         this.pointValue = pointValue;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public MasterChallenge getMasterChallenge() {

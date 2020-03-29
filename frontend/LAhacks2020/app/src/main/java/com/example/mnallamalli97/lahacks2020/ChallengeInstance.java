@@ -5,20 +5,23 @@ import com.google.gson.annotations.SerializedName;
 public class ChallengeInstance {
     @SerializedName("id")
     private int id;
-    @SerializedName("tasks")
-    private TaskInstance[] tasks;
     @SerializedName("challenge")
-    private int challenge;
+    private MasterChallenge masterChallenge;
     @SerializedName("teams")
     private int[] teams;
+    @SerializedName("tasks")
+    private TaskInstance[] tasks;
+    @SerializedName("start_time")
+    private String startTime;
     @SerializedName("scores")
     private int[] scores;
 
-    public ChallengeInstance(int id, TaskInstance[] tasks, int challenge, int[] teams, int[] scores){
+    public ChallengeInstance(int id, MasterChallenge challenge, TaskInstance[] tasks, int[] teams, String start_time, int[] scores){
         this.id = id;
         this.tasks = tasks;
-        this.challenge = challenge;
+        this.masterChallenge = challenge;
         this.teams = teams;
+        this.startTime = start_time;
         this.scores = scores;
     }
 
@@ -30,12 +33,16 @@ public class ChallengeInstance {
         return tasks;
     }
 
-    public int getChallenge() {
-        return challenge;
+    public MasterChallenge getMasterChallenge() {
+        return masterChallenge;
     }
 
     public int[] getTeams() {
         return teams;
+    }
+
+    public String getStartTime() {
+        return startTime;
     }
 
     public int[] getScores() {
