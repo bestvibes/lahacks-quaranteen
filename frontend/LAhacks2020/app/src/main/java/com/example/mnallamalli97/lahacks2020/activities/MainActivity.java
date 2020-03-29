@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.OnTa
         TaskViewModel.getUserTasks().observe(this, new Observer<List<TaskInstance>>() {
             @Override
             public void onChanged(List<TaskInstance> taskInstances) {
+                tasksList.clear();
+                tasksList.addAll(taskInstances);
                 listAdapter.notifyDataSetChanged();
                 Log.d("getTasksByUser", "TaskInstance list returned");
             }
