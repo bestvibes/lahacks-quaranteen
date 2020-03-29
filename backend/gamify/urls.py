@@ -2,14 +2,14 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from gamify.views import createTeam, joinTeam, leaveTeam, UserViewSet
+from gamify.views import createTeam, joinTeam, leaveTeam, login, UserViewSet
 from gamify.verification.views import verifyApple, verifyVideo, verifyBook, verifySunrise
 
 router = DefaultRouter()
 router.register('users', UserViewSet)
 
 urlpatterns = [
-    path('login/', views.login, name='login'),
+    path('login/', login, name='login'),
     path('models/', include(router.urls)),
     path('team/create/', createTeam, name='team-create'),
     path('team/leave/', leaveTeam, name='team-leave'),
