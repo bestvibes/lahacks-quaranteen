@@ -2,10 +2,11 @@ package com.example.mnallamalli97.lahacks2020.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mnallamalli97.lahacks2020.R;
 import com.example.mnallamalli97.lahacks2020.User;
@@ -15,10 +16,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,28 +68,27 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        String name, emailID;
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            String name = account.getDisplayName();
-            String emailID = account.getEmail();
-
-
-            sendEmailIDToServer(name, emailID);
-
+            name = account.getDisplayName();
+            emailID = account.getEmail();
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("TAG", "signInResult:failed code=" + e.getStatusCode());
+            Log.w("TAG", "signInResult:failed code=" + GoogleSignInStatusCodes.getStatusCodeString(e.getStatusCode()));
+            return;
         }
+        sendEmailIDToServer(name, emailID);
     }
 
     private void sendEmailIDToServer(String name, String email) {
 
         GamifyClient client = NetworkUtils.getGamifyClient();
 
-        client.login(name, email).enqueue(new Callback<List<User>>() {
+        client.login(name, email).enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 //200 means already signed in
                 //201 means new user
                 //TODO: here is where we decide to take the user to another screen
@@ -105,8 +104,9 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                Log.w("TAG", "signInResult:status code="+ t.getMessage().toString());
+            public void onFailure(Call<User> call, Throwable t) {
+                t.printStackTrace();
+                Log.e("TAG", "signInFailure:status code="+ t.getMessage());
             }
         });
 
