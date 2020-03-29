@@ -1,5 +1,6 @@
 package com.example.mnallamalli97.lahacks2020;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -63,5 +64,9 @@ public class TeamDataViewModel extends ViewModel {
                 team.setValue(null);
             }
         });
+    }
+
+    public LiveData<Team> getTeamData(){
+        return team;
     }
 }

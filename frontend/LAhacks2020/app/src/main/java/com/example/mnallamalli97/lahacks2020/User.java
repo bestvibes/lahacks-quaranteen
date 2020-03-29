@@ -38,4 +38,8 @@ public class User {
     public Integer getTeam(){
         return team;
     }
+
+    public Boolean isTeamLeader() {
+        return team_leader;
+    }
 }
