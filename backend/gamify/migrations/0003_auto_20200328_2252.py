@@ -8,25 +8,25 @@ def load_challenges_and_tasks(apps, schema_editor):
     task_one = MasterTask(
         name="An Apple A Day",
         description="Take a picture of yourself eating an apple!",
-        verification_url="/verify/1",
+        verification_url="/verify/apple",
         point_value=1,
     )
     task_two = MasterTask(
         name="Quality Time Over Facetime",
         description="Take a picture of yourself video calling a friend!",
-        verification_url="/verify/2",
+        verification_url="/verify/video",
         point_value=1,
     )
     task_three = MasterTask(
         name="Knowledge Is Power",
         description="Take a picture of yourself reading a book!",
-        verification_url="/verify/3",
+        verification_url="/verify/book",
         point_value=1,
     )
     task_four = MasterTask(
         name="Beat The Sun",
         description="Take a picture of yourself waking up at 5:30 AM!",
-        verification_url="/verify/4",
+        verification_url="/verify/sunrise",
         point_value=1,
     )
     task_one.save()
