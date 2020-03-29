@@ -7,8 +7,8 @@ public final class NetworkUtils {
 
     private static Retrofit retrofit;
 
-    // TO-DO
-    private static final String BASE_URL = "";
+    // temp URL for emulator localhost
+    private static final String BASE_URL = "http://10.0.2.2:8080/";
 
     public static Retrofit getRetrofitInstance(){
         if(retrofit == null){
