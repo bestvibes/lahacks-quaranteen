@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mnallamalli97.lahacks2020.R;
 import com.example.mnallamalli97.lahacks2020.User;
+import com.example.mnallamalli97.lahacks2020.UserDataViewModel;
 import com.example.mnallamalli97.lahacks2020.utilities.GamifyClient;
 import com.example.mnallamalli97.lahacks2020.utilities.NetworkUtils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -93,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                 //201 means new user
                 //TODO: here is where we decide to take the user to another screen
                 Log.w("TAG", "signInResult:status code=" + response.code());
+                UserDataViewModel.setUser(response.body());
 
                 if(response.body().getTeam() == null){
                     Intent intent = new Intent(LoginActivity.this, CreateJoinPartyActivity.class);

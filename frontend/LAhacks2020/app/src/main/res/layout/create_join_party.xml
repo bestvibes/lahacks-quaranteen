@@ -7,11 +7,11 @@
     android:background="@drawable/w">
 
     <Button
-        android:id="@+id/joinPartyButton"
+        android:id="@+id/joinTeamButton"
         android:layout_width="199dp"
         android:layout_height="52dp"
         android:background="#673AB7"
-        android:text="Join Party"
+        android:text="Join Team"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,11 +20,11 @@
         app:layout_constraintVertical_bias="0.512" />
 
     <Button
-        android:id="@+id/createPartyButton"
+        android:id="@+id/createTeamButton"
         android:layout_width="199dp"
         android:layout_height="52dp"
         android:background="#9C27B0"
-        android:text="Create Party"
+        android:text="Create Team"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
