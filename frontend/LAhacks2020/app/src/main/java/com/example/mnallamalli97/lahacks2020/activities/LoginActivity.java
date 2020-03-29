@@ -18,6 +18,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -81,25 +83,32 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void sendEmailIDToServer(String name, String email){
+    private void sendEmailIDToServer(String name, String email) {
 
         GamifyClient client = NetworkUtils.getGamifyClient();
-        client.login(name, email).enqueue(new Callback<User>() {
+
+        client.login(name, email).enqueue(new Callback<List<User>>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 //200 means already signed in
                 //201 means new user
                 //TODO: here is where we decide to take the user to another screen
                 Log.w("TAG", "signInResult:status code=" + response.code());
 
+                if(response.code() == 201){
+                    Intent intent = new Intent(LoginActivity.this, CreateJoinPartyActivity.class);
+                    startActivity(intent);
+                } else if (response.code() == 200) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                Log.w("TAG", "signInResult:status code="+ t.getMessage().toString());
             }
         });
-
 
 
     }

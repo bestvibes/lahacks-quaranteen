@@ -9,14 +9,16 @@ public class User {
     private int user_id;
     @SerializedName("name")
     private String name;
+    @SerializedName("email")
+    private String email;
     @SerializedName("team")
     @Nullable private Integer team;
     @SerializedName("team_leader")
     private Boolean team_leader;
 
-    public User(int user_id, String name, @Nullable Integer team, Boolean team_leader){
-        this.user_id = user_id;
+    public User(String name, String email, Integer team, Boolean team_leader){
         this.name = name;
+        this.email = email;
         this.team = team;
         this.team_leader = team_leader;
     }
@@ -29,11 +31,11 @@ public class User {
         return name;
     }
 
-    public Integer getTeam(){
-        return team;
+    public String getEmail(){
+        return email;
     }
 
-    public Boolean getTeamLeader(){
-        return team_leader;
+    public Integer getTeam(){
+        return team;
     }
 }
