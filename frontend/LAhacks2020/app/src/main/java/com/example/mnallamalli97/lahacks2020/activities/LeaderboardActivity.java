@@ -5,15 +5,20 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.mnallamalli97.lahacks2020.R;
+import com.example.mnallamalli97.lahacks2020.Teams;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class LeaderboardActivity extends AppCompatActivity {
+
+    private RecyclerView leaderboardRecyclerView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -46,6 +51,8 @@ public class LeaderboardActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.leaderboard);
+        leaderboardRecyclerView = findViewById(R.id.leaderboardRecyclerView);
+
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -53,3 +60,4 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     }
 }
+
