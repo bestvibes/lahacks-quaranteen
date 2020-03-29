@@ -16,7 +16,7 @@ public class User {
     @SerializedName("team_leader")
     private Boolean team_leader;
 
-
+    public User(String name, String email, Integer team, Boolean team_leader){
         this.name = name;
         this.email = email;
         this.team = team;
@@ -31,11 +31,11 @@ public class User {
         return name;
     }
 
-
-        return team;
+    public String getEmail(){
+        return email;
     }
 
-    public Boolean getTeamLeader(){
-        return team_leader;
+    public Integer getTeam(){
+        return team;
     }
 }
