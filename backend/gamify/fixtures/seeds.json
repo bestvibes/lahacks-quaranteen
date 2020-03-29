@@ -211,7 +211,7 @@
   	"model": "gamify.challengeInstance",
   	"pk": 1,
   	"fields": {
-  		"challenge": 1,
+  		"masterChallenge": 1,
   		"teams": [1,4],
   		"scores": [1,4],
   		"start_time": "2020-03-28T12:24"
@@ -221,7 +221,7 @@
   	"model": "gamify.challengeInstance",
   	"pk": 2,
   	"fields": {
-  		"challenge": 1,
+  		"masterChallenge": 1,
   		"teams": [2,3],
   		"scores": [2,3],
   		"start_time": "2020-03-29T12:24"
