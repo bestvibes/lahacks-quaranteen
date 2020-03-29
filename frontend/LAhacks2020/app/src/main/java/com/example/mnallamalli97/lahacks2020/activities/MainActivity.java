@@ -6,18 +6,25 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.mnallamalli97.lahacks2020.MasterTask;
 import com.example.mnallamalli97.lahacks2020.R;
+import com.example.mnallamalli97.lahacks2020.TasksAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+    private TasksAdapter listAdapter;
+    private ArrayList<MasterTask> tasksList = new ArrayList<>();
+    private RecyclerView recycler;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -26,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                    return true;
+                case R.id.leaderboard_button:
                     return true;
                 case R.id.navigation_settings:
                     Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
@@ -41,21 +49,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        // update data based on ViewModel
-//        final Observer<User> updateData = new Observer<User>() {
-//            @Override
-//            public void onChanged(User user) {
-//                //TO-DO
-//            }
-//        }
-//        UserDataViewModel model = new ViewModelProvider(this).get(UserDataViewModel.class);
-//        model.getLiveData().observe(this, updateData);
-//        model.loadData();
+        recycler = findViewById(R.id.tasksRecyclerView);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recycler.setLayoutManager(layoutManager);
+        listAdapter = new TasksAdapter(tasksList, this);
+        recycler.setAdapter(listAdapter);
+
+        //Load the date from the network or other resources
+        //into the array list asynchronously
+
+        //tasksList.add(new MasterTask(masterChallenge, "778899009", "google.com", 30));
+
+        listAdapter.notifyDataSetChanged();
+
+
     }
 
 }
