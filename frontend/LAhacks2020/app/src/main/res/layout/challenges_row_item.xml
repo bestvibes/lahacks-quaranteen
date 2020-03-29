@@ -3,7 +3,8 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,9 +32,38 @@
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
-
-
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/challengeDescription"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:text="Challenge Description"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/challengeStartDate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:text="March 14, 2020 6:00 AM"
+        android:textAlignment="textStart"
+        android:textColor="#000"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/challengeTeamsJoined"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:text="4 Teams have joined this challenge"
+        android:textAlignment="textStart"
+        android:textColor="#000"
+        android:textSize="12sp" />
+
 
 
 
