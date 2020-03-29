@@ -10,7 +10,29 @@ from rest_framework.viewsets import ModelViewSet
 
 from gamify.models import Team, User
 from gamify.serializers import UserSerializer
+from django.http import HttpResponse
+from django.core import serializers
 
+from rest_framework.views import APIView 
+from gamify.models import User
+
+@api_view(['POST'])
+def login(request, format=None):
+	email = request.POST['email']
+	response = HttpResponse()
+	try:
+		u = User.objects.get(email=email)
+		user_serialized = serializers.serialize("json", [u])
+		response.status_code = 200
+		response.content = user_serialized
+		return response
+	except User.DoesNotExist:
+		u = User(email=email, name=request.POST['name'])
+		u.save()
+		user_serialized = serializers.serialize("json", [u])
+		response.content = user_serialized
+		response.status_code = 201
+		return response
 
 @api_view(['POST'])
 def createTeam(request):

@@ -8,6 +8,7 @@ class Team(models.Model):
 
 class User(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
+    email = models.CharField(max_length=100, blank=False, null=False)
     team = models.ForeignKey(Team, on_delete=models.SET_NULL, blank=True, null=True)  # many-to-one
     team_leader = models.BooleanField(blank=False, null=False, default=False)
 
