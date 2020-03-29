@@ -9,16 +9,20 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mnallamalli97.lahacks2020.MasterTask;
 import com.example.mnallamalli97.lahacks2020.R;
+import com.example.mnallamalli97.lahacks2020.TaskInstance;
+import com.example.mnallamalli97.lahacks2020.TaskViewModel;
 import com.example.mnallamalli97.lahacks2020.TasksAdapter;
 import com.example.mnallamalli97.lahacks2020.TeamDataViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements TasksAdapter.OnTaskListener {
 
@@ -79,7 +83,13 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.OnTa
 
         listAdapter.notifyDataSetChanged();
 
-
+        TaskViewModel.getUserTasks().observe(this, new Observer<List<TaskInstance>>() {
+            @Override
+            public void onChanged(List<TaskInstance> taskInstances) {
+                listAdapter.notifyDataSetChanged();
+                Log.d("getTasksByUser", "TaskInstance list returned");
+            }
+        });
     }
 
     @Override

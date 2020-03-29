@@ -10,18 +10,18 @@ import retrofit2.http.Part;
 
 public interface VerificationService {
     @Multipart
-    @POST("/verify/apple")
+    @POST("/verify/apple/")
     Call<Verification> verifyApple(@Part("user_id") int user_id, @Part("img") RequestBody image);
 
     @Multipart
-    @POST("/verify/video")
+    @POST("/verify/video/")
     Call<Verification> verifyVideo(@Part("user_id") int user_id, @Part("img") RequestBody image);
 
     @Multipart
-    @POST("/verify/book")
+    @POST("/verify/book/")
     Call<Verification> verifyBook(@Part("user_id") int user_id, @Part("img") RequestBody image);
 
     @Multipart
-    @POST("/verify/sunrise")
+    @POST("/verify/sunrise/")
     Call<Verification> verifySunrise(@Part("user_id") int user_id, @Part("img") RequestBody image);
 }

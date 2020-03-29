@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> {
@@ -45,8 +47,8 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final MasterTask task = tasksList.get(position);
-
         // Set the data to the views here
+        TaskViewModel.getTasksByUser(UserDataViewModel.getUpdatedUserLiveData().getValue().getUser_id());
         holder.setTaskName(task.getMasterChallenge().getName());
     }
 
