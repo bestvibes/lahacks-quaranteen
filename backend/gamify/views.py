@@ -9,16 +9,16 @@ from gamify.models import User
 def login(request, format=None):
 	email = request.POST['email']
 	response = HttpResponse()
-	if not User.objects.get(email=email):
-		# Need to create a user
-		u =	User(email=email, name=request.POST['name'])
-		u.save()
-		user_serialized = serializers.serialize("json", u)
-		response.content = user_serialized
-		response.status_code = 201
-		return response
-	else:
-		user_serialized = serializers.serialize("json", User.objects.get(email=email))
+	try:
+		u = User.objects.get(email=email)
+		user_serialized = serializers.serialize("json", [u])
 		response.status_code = 200
 		response.content = user_serialized
+		return response
+	except User.DoesNotExist:
+		u =	User(email=email, name=request.POST['name'])
+		u.save()
+		user_serialized = serializers.serialize("json", [u])
+		response.content = user_serialized
+		response.status_code = 201
 		return response
