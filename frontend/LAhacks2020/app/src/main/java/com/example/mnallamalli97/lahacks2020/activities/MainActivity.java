@@ -32,9 +32,17 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
+                case R.id.navigation_challenges:
+                    Intent friendsIntent = new Intent(MainActivity.this, ChallengeActivity.class);
+                    startActivity(friendsIntent);
+                    return true;
                 case R.id.navigation_dashboard:
+                    Intent dashboardIntent = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(dashboardIntent);
                     return true;
                 case R.id.leaderboard_button:
+                    Intent leaderboardIntent = new Intent(MainActivity.this, LeaderboardActivity.class);
+                    startActivity(leaderboardIntent);
                     return true;
                 case R.id.navigation_settings:
                     Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);

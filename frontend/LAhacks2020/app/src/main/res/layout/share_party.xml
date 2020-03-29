@@ -65,7 +65,7 @@
         android:id="@+id/headerTextview"
         android:layout_width="275dp"
         android:layout_height="58dp"
-        android:text="SHARE PARTY"
+        android:text="SHARE TEAM"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="36sp"

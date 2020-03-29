@@ -28,7 +28,7 @@ public class ChallengeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.challenge_screen);
+        setContentView(R.layout.task_screen);
         cameraButton = findViewById(R.id.cameraButton);
 
         cameraButton.setOnClickListener(new View.OnClickListener() {

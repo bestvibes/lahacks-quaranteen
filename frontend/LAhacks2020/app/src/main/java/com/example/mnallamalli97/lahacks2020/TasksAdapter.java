@@ -30,7 +30,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskHolder> 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
         // Inflate the layout view you have created for the list rows here
-        View view = layoutInflater.inflate(R.layout.task_row_item, parent, false);
+        View view = layoutInflater.inflate(R.layout.teammate_row_item, parent, false);
         return new TaskHolder(view);
     }
 
