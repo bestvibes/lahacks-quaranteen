@@ -41,16 +41,16 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        final Observer<User> updateData = new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                //TO-DO
-            }
-        }
-
-        UserDataViewModel model = new ViewModelProvider(this).get(UserDataViewModel.class);
-        model.getLiveData().observe(this, updateData);
-        model.loadData();
+        // update data based on ViewModel
+//        final Observer<User> updateData = new Observer<User>() {
+//            @Override
+//            public void onChanged(User user) {
+//                //TO-DO
+//            }
+//        }
+//        UserDataViewModel model = new ViewModelProvider(this).get(UserDataViewModel.class);
+//        model.getLiveData().observe(this, updateData);
+//        model.loadData();
     }
 
 }

@@ -3,6 +3,8 @@ package com.example.mnallamalli97.lahacks2020;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.ViewModel;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -10,7 +12,7 @@ import retrofit2.Response;
 import com.example.mnallamalli97.lahacks2020.utilities.NetworkUtils;
 import com.example.mnallamalli97.lahacks2020.utilities.UserService;
 
-public class UserDataViewModel {
+public class UserDataViewModel extends ViewModel {
     private MutableLiveData<User> user;
 
     public UserDataViewModel() {
