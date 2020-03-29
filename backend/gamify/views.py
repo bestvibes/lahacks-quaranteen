@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 from rest_framework.viewsets import ModelViewSet
 
-from gamify.models import Team, User, ChallengeInstance
+from gamify.models import Team, User, ChallengeInstance, TaskInstance
 from gamify.serializers import UserSerializer, ChallengeInstanceSerializer
 from django.http import HttpResponse
 from django.core import serializers
@@ -107,11 +107,6 @@ class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
 
 
-@api_view(['GET'])
-def listChallenges(request):
-    return JsonResponse(serializers.serialize("json", ChallengeInstance.objects.all()), status=200, safe=False)
-
-
 @api_view(['POST'])
 def joinChallenge(request):
     """
@@ -132,18 +127,10 @@ def joinChallenge(request):
 
     challenge.teams.add(team)
     challenge.save()
-    return JsonResponse(serializers.serialize("json", ChallengeInstance.objects.filter(id=challenge.id)), status=200, safe=False)
-
-
-@api_view(['POST'])
-def getChallenge(request):
-    """
-    Get details about a challenge
-    inputs: JSON with one field "challenge_id"
-    """
-    data = JSONParser().parse(request)
-    challenge = ChallengeInstance.objects.get(id=data["challenge_id"])
-    return JsonResponse(serializers.serialize("json", challenge, status=200, safe=False))
+    return JsonResponse(
+        serializers.serialize("json", ChallengeInstance.objects.filter(id=challenge.id)),
+        status=200, safe=False
+    )
 
 
 @api_view(['POST'])
@@ -154,7 +141,10 @@ def getUserTasks(request):
     """
     data = JSONParser().parse(request)
     user = User.objects.get(id=data["user_id"])
-    return JsonResponse(serializers.serialize("json", user.tasks, status=200, safe=False))
+    return JsonResponse(
+        serializers.serialize("json", TaskInstance.objects.filter(user=user)), 
+        status=200, safe=False
+    )
 
 
 class ChallengeInstanceViewSet(ModelViewSet):

@@ -15,7 +15,6 @@ class User(models.Model):
     team_leader = models.BooleanField(blank=False, null=False, default=False)
 
 
-
 class TeamScore(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, blank=False, null=False)  # many-to-one
     score = models.IntegerField(blank=False, null=False)
@@ -45,6 +44,7 @@ class ChallengeInstance(models.Model):
         time_now = datetime.datetime.now()
         return (time_now >= start_time + datetime.time_delta(days=challenge.number_of_days))
 
+
 class MasterTask(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
     challenge = models.ForeignKey(MasterChallenge, related_name="master_tasks", on_delete=models.CASCADE, blank=False, null=False) # many-to-one
@@ -58,4 +58,3 @@ class TaskInstance(models.Model):
     user = models.ForeignKey(User, related_name="tasks", on_delete=models.CASCADE, blank=False, null=False)  # many-to-one
     date = models.DateField(auto_now_add=True)
     completed = models.BooleanField(blank=False, null=False)
-    
