@@ -5,7 +5,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from gamify.views import (
     createTeam, joinChallenge, joinTeam, leaveTeam, login, getUserTasks,
     ChallengeInstanceViewSet, UserViewSet, MasterChallengeViewSet, MasterTaskViewSet,
-    TaskInstanceViewSet, TeamViewSet, schema_view, uploadProfilePic
+    TaskInstanceViewSet, TeamViewSet, schema_view, uploadProfilePic, deleteUser
 )
 from gamify.verification.views import verifyApple, verifyVideo, verifyBook, verifySunrise
 
@@ -19,6 +19,7 @@ router.register('tasks', TaskInstanceViewSet)
 
 urlpatterns = [
     path('login/', login, name='login'),
+    path('user/delete/', deleteUser, name='delete-user'),
     path('models/', include(router.urls)),
     path('models/users/pic/', uploadProfilePic, name='upload-profile-pic'),
     path('tasks/byuser/', getUserTasks, name='get-user-tasks'),

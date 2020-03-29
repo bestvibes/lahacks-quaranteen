@@ -1,0 +1,505 @@
+[
+  {
+    "model": "gamify.team",
+    "pk": 1,
+    "fields": {
+      "name": "Team 1",
+      "join_code": "6704B"
+    }
+  },
+  {
+    "model": "gamify.team",
+    "pk": 2,
+    "fields": {
+      "name": "Team 2",
+      "join_code": "M327Y"
+    }
+  },
+  {
+    "model": "gamify.team",
+    "pk": 3,
+    "fields": {
+      "name": "Team 3",
+      "join_code": "U5J5C"
+    }
+  },
+  {
+    "model": "gamify.team",
+    "pk": 4,
+    "fields": {
+      "name": "Team 4",
+      "join_code": "QMSEA"
+    }
+  },
+  {
+    "model": "gamify.user",
+    "pk": 1,
+    "fields": {
+      "name": "Test1",
+      "email": "Test1@gmail.com",
+      "team": 1,
+      "team_leader": true
+    }
+  },
+  {
+    "model": "gamify.user",
+    "pk": 2,
+    "fields": {
+      "name": "Test2",
+      "email": "Test2@gmail.com",
+      "team": 2,
+      "team_leader": true
+    }
+  },
+  {
+    "model": "gamify.user",
+    "pk": 3,
+    "fields": {
+      "name": "Test3",
+      "email": "Test3@gmail.com",
+      "team": 3,
+      "team_leader": true
+    }
+  },
+  {
+    "model": "gamify.user",
+    "pk": 4,
+    "fields": {
+      "name": "Test4",
+      "email": "Test4@gmail.com",
+      "team": 4,
+      "team_leader": true
+    }
+  },
+  {
+    "model": "gamify.user",
+    "pk": 5,
+    "fields": {
+      "name": "Test5",
+      "email": "Test5@gmail.com",
+      "team": 1,
+      "team_leader": false
+    }
+  },
+  {
+    "model": "gamify.user",
+    "pk": 6,
+    "fields": {
+      "name": "Test6",
+      "email": "Test6@gmail.com",
+      "team": 2,
+      "team_leader": false
+    }
+  },
+  {
+    "model": "gamify.user",
+    "pk": 7,
+    "fields": {
+      "name": "Test7",
+      "email": "Test7@gmail.com",
+      "team": 3,
+      "team_leader": false
+    }
+  },
+  {
+    "model": "gamify.user",
+    "pk": 8,
+    "fields": {
+      "name": "Test8",
+      "email": "Test8@gmail.com",
+      "team": 4,
+      "team_leader": false
+    }
+  },
+  {
+    "model": "gamify.teamscore",
+    "pk": 1,
+    "fields": {
+      "team": 1,
+      "score": 5
+    }
+  },
+  {
+    "model": "gamify.teamscore",
+    "pk": 2,
+    "fields": {
+      "team": 1,
+      "score": 5
+    }
+  },
+  {
+    "model": "gamify.teamscore",
+    "pk": 3,
+    "fields": {
+      "team": 2,
+      "score": 5
+    }
+  },
+  {
+    "model": "gamify.teamscore",
+    "pk": 4,
+    "fields": {
+      "team": 3,
+      "score": 5
+    }
+  },
+  {
+    "model": "gamify.teamscore",
+    "pk": 5,
+    "fields": {
+      "team": 4,
+      "score": 5
+    }
+  },
+  {
+    "model": "gamify.masterchallenge",
+    "pk": 1,
+    "fields": {
+      "name": "Wellness",
+      "description": "Quarantine isn't an excuse to forget about your personal health! Enroll in this challenge today and start building healthier habits.",
+      "prize": "A one year subscription to Headspace for each team member",
+      "daily_point_limit": 6,
+      "team_size_limit": 8,
+      "number_of_days": 7
+    }
+  },
+  {
+    "model": "gamify.mastertask",
+    "pk": 1,
+    "fields": {
+      "name": "An Apple A Day",
+      "challenge": 1,
+      "description": "Take a picture of yourself eating an apple!",
+      "verification_url": "/verify/apple",
+      "point_value": 1
+    }
+  },
+  {
+    "model": "gamify.mastertask",
+    "pk": 2,
+    "fields": {
+      "name": "Quality Time Over Facetime",
+      "challenge": 1,
+      "description": "Take a picture of yourself video calling a friend!",
+      "verification_url": "/verify/video",
+      "point_value": 1
+    }
+  },
+  {
+    "model": "gamify.mastertask",
+    "pk": 3,
+    "fields": {
+      "name": "Knowledge Is Power",
+      "challenge": 1,
+      "description": "Take a picture of yourself reading a book!",
+      "verification_url": "/verify/book",
+      "point_value": 1
+    }
+  },
+  {
+    "model": "gamify.mastertask",
+    "pk": 4,
+    "fields": {
+      "name": "Beat The Sun",
+      "challenge": 1,
+      "description": "Take a picture of yourself waking up at 5:30 AM!",
+      "verification_url": "/verify/sunrise",
+      "point_value": 1
+    }
+  },
+  {
+  	"model": "gamify.challengeInstance",
+  	"pk": 1,
+  	"fields": {
+  		"challenge": 1,
+  		"teams": [1,4],
+  		"scores": [1,4],
+  		"start_time": "2020-03-28T12:24"
+  	}
+  },
+  {
+  	"model": "gamify.challengeInstance",
+  	"pk": 2,
+  	"fields": {
+  		"challenge": 1,
+  		"teams": [2,3],
+  		"scores": [2,3],
+  		"start_time": "2020-03-29T12:24"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 1,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 1,
+  		"user": 1,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 2,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 1,
+  		"user": 1,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 3,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 2,
+  		"user": 1,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 4,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 3,
+  		"user": 1,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 5,
+  	"fields": {
+  		"challenge": 2,
+  		"task": 1,
+  		"user": 2,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 6,
+  	"fields": {
+  		"challenge": 2,
+  		"task": 2,
+  		"user": 2,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 7,
+  	"fields": {
+  		"challenge": 2,
+  		"task": 3,
+  		"user": 2,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 8,
+  	"fields": {
+  		"challenge": 2,
+  		"task": 1,
+  		"user": 3,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 9,
+  	"fields": {
+  		"challenge": 2,
+  		"task": 2,
+  		"user": 3,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 9,
+  	"fields": {
+  		"challenge": 2,
+  		"task": 3,
+  		"user": 3,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 10,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 1,
+  		"user": 4,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 11,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 2,
+  		"user": 4,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 12,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 3,
+  		"user": 4,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 13,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 1,
+  		"user": 5,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 14,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 2,
+  		"user": 5,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 15,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 3,
+  		"user": 5,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 16,
+  	"fields": {
+  		"challenge": 2,
+  		"task": 1,
+  		"user": 6,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 17,
+  	"fields": {
+  		"challenge": 2,
+  		"task": 2,
+  		"user": 6,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 18,
+  	"fields": {
+  		"challenge": 2,
+  		"task": 3,
+  		"user": 6,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 19,
+  	"fields": {
+  		"challenge": 2,
+  		"task": 1,
+  		"user": 7,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 20,
+  	"fields": {
+  		"challenge": 2,
+  		"task": 2,
+  		"user": 7,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 21,
+  	"fields": {
+  		"challenge": 2,
+  		"task": 3,
+  		"user": 7,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 22,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 1,
+  		"user": 8,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 23,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 2,
+  		"user": 8,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  },
+  {
+  	"model": "gamify.taskinstance",
+  	"pk": 24,
+  	"fields": {
+  		"challenge": 1,
+  		"task": 3,
+  		"user": 8,
+  		"date": "2020-03-29",
+  		"completed": "False"
+  	}
+  }
+]
