@@ -31,18 +31,17 @@ class MasterChallenge(models.Model):
 
 class ChallengeInstance(models.Model):
     challenge = models.ForeignKey(MasterChallenge, related_name="challenge_instances", on_delete=models.CASCADE, blank=False, null=False)  # many-to-one
-    teams = models.ManyToManyField(Team)  # many-to-many
-    # tasks = models.ManyToManyField(TaskInstance)  # many-to-many
-    scores = models.ManyToManyField(TeamScore)  # many-to-many
+    teams = models.ManyToManyField(Team, blank=True)  # many-to-many
+    scores = models.ManyToManyField(TeamScore, blank=True)  # many-to-many
     start_time = models.DateTimeField(blank=False, null=False)
 
-    def is_in_progress():
-        time_now = datetime.datetime.now()
-        return (time_now > start_time and time_now < start_time + datetime.time_delta(days=challenge.number_of_days))
+    def is_in_progress(self):
+        time_now = datetime.datetime.now(self.start_time.tzinfo)
+        return (time_now > self.start_time and time_now < self.start_time + datetime.timedelta(days=self.challenge.number_of_days))
 
-    def has_ended():
-        time_now = datetime.datetime.now()
-        return (time_now >= start_time + datetime.time_delta(days=challenge.number_of_days))
+    def has_ended(self):
+        time_now = datetime.datetime.now(self.start_time.tzinfo)
+        return (time_now >= self.start_time + datetime.timedelta(days=self.challenge.number_of_days))
 
 
 class MasterTask(models.Model):
@@ -52,9 +51,9 @@ class MasterTask(models.Model):
     verification_url = models.CharField(max_length=512, blank=False, null=False)
     point_value = models.IntegerField(blank=False, null=False)
 
-
 class TaskInstance(models.Model):
+    challenge = models.ForeignKey(ChallengeInstance, related_name="tasks", on_delete=models.CASCADE, blank=False, null=False)
     task = models.ForeignKey(MasterTask, related_name="instances", on_delete=models.CASCADE, blank=False, null=False)  # many-to-one
     user = models.ForeignKey(User, related_name="tasks", on_delete=models.CASCADE, blank=False, null=False)  # many-to-one
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField()
     completed = models.BooleanField(blank=False, null=False)
