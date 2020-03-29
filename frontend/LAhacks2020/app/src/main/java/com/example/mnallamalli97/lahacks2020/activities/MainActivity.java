@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mnallamalli97.lahacks2020.MasterTask;
 import com.example.mnallamalli97.lahacks2020.R;
 import com.example.mnallamalli97.lahacks2020.TaskInstance;
 import com.example.mnallamalli97.lahacks2020.TaskViewModel;
@@ -106,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.OnTa
     @Override
     public void onTaskClick(int position) {
         Log.d("TAG", "onTaskClick: clicked");
-        tasksList.get(position);
         Intent intent = new Intent(this, TaskActivity.class);
+        intent.putExtra("task", position);
         startActivity(intent);
     }
 }

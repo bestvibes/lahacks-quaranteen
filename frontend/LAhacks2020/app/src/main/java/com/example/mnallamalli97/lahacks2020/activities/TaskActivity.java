@@ -9,10 +9,16 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+
 import com.example.mnallamalli97.lahacks2020.R;
-import com.example.mnallamalli97.lahacks2020.User;
+import com.example.mnallamalli97.lahacks2020.TaskInstance;
+import com.example.mnallamalli97.lahacks2020.TaskViewModel;
 import com.example.mnallamalli97.lahacks2020.Verification;
 import com.example.mnallamalli97.lahacks2020.VerificationViewModel;
 
@@ -20,10 +26,6 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 
 public class TaskActivity extends AppCompatActivity {
 
@@ -35,6 +37,11 @@ public class TaskActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_screen);
+
+        TaskInstance task = TaskViewModel.getUserTasks().getValue().get(getIntent().getIntExtra("task", 0));
+        TextView header = findViewById(R.id.taskNameTextview);
+        header.setText(task.getMasterTask().getName());
+
         cameraButton = findViewById(R.id.cameraButton);
 
         cameraButton.setOnClickListener(new View.OnClickListener() {
