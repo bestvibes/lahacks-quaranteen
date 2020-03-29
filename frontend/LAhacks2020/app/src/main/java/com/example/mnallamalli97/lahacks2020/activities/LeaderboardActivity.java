@@ -49,7 +49,7 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
+        navigation.getMenu().findItem(R.id.leaderboard_button).setChecked(true);
 
     }
 }

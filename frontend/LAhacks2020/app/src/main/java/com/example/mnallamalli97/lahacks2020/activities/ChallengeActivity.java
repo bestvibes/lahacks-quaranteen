@@ -21,7 +21,7 @@ public class ChallengeActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_challenges:
-                    Intent friendsIntent = new Intent(ChallengeActivity.this, TaskActivity.class);
+                    Intent friendsIntent = new Intent(ChallengeActivity.this, ChallengeActivity.class);
                     startActivity(friendsIntent);
                     return true;
                 case R.id.navigation_dashboard:
@@ -48,5 +48,6 @@ public class ChallengeActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.getMenu().findItem(R.id.navigation_challenges).setChecked(true);
     }
 }

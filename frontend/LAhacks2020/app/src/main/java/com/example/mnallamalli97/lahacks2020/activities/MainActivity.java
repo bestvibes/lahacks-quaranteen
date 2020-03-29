@@ -19,6 +19,7 @@ import com.example.mnallamalli97.lahacks2020.TaskInstance;
 import com.example.mnallamalli97.lahacks2020.TaskViewModel;
 import com.example.mnallamalli97.lahacks2020.TasksAdapter;
 import com.example.mnallamalli97.lahacks2020.TeamDataViewModel;
+import com.example.mnallamalli97.lahacks2020.UserDataViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements TasksAdapter.OnTaskListener {
 
     private TasksAdapter listAdapter;
-    private ArrayList<MasterTask> tasksList = new ArrayList<>();
+    private ArrayList<TaskInstance> tasksList = new ArrayList<>();
     private RecyclerView recycler;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -61,8 +62,24 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.OnTa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TaskViewModel.getUserTasks().observe(this, new Observer<List<TaskInstance>>() {
+            @Override
+            public void onChanged(List<TaskInstance> taskInstances) {
+                listAdapter.notifyDataSetChanged();
+                Log.d("getTasksByUser", "TaskInstance list returned");
+            }
+        });
+
+        if (UserDataViewModel.getUpdatedUserLiveData().getValue() != null){
+            int user_id = UserDataViewModel.getUpdatedUserLiveData().getValue().getUser_id();
+            TaskViewModel.getTasksByUser(user_id);
+        }
+
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.getMenu().findItem(R.id.navigation_dashboard).setChecked(true);
 
         recycler = findViewById(R.id.tasksRecyclerView);
 
@@ -82,14 +99,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.OnTa
         //tasksList.add(new MasterTask(masterChallenge, "778899009", "google.com", 30));
 
         listAdapter.notifyDataSetChanged();
-
-        TaskViewModel.getUserTasks().observe(this, new Observer<List<TaskInstance>>() {
-            @Override
-            public void onChanged(List<TaskInstance> taskInstances) {
-                listAdapter.notifyDataSetChanged();
-                Log.d("getTasksByUser", "TaskInstance list returned");
-            }
-        });
     }
 
     @Override
