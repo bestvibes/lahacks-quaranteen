@@ -39,6 +39,19 @@ def login(request, format=None):
 		user_serialized = UserSerializer(u).data
 		return JsonResponse(user_serialized, status=200, safe=False)
 
+@api_view(['POST'])
+def deleteUser(request):
+    """
+    Delete a user. mainly for debugging/testing.
+    inputs: JSON with one field "user_id"
+    """
+    data = JSONParser().parse(request)
+    user_id = data['user_id']
+
+    User.objects.get(id=data["user_id"]).delete()
+
+    return HttpResponse(status=200)
+
 
 @api_view(['POST'])
 def uploadProfilePic(request):
