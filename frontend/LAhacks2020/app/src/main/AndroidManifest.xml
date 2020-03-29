@@ -33,7 +33,7 @@
         <activity android:name=".activities.SharePartyActivity"></activity>
         <activity android:name=".activities.JoinPartyActivity"></activity>
         <activity android:name=".activities.CreatePartyActivity"></activity>
-        <activity android:name=".activities.ChallengeActivity"></activity>
+        <activity android:name=".activities.TaskActivity"></activity>
 
 
 

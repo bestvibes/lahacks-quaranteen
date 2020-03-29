@@ -22,7 +22,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_challenges:
-                    Intent friendsIntent = new Intent(LeaderboardActivity.this, ChallengeActivity.class);
+                    Intent friendsIntent = new Intent(LeaderboardActivity.this, TaskActivity.class);
                     startActivity(friendsIntent);
                     return true;
                 case R.id.navigation_dashboard:

@@ -19,7 +19,7 @@ import java.util.Date;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ChallengeActivity extends AppCompatActivity {
+public class TaskActivity extends AppCompatActivity {
 
     private Button cameraButton;
     Uri imageUri;
