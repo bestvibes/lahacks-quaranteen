@@ -2,15 +2,15 @@ package com.example.mnallamalli97.lahacks2020.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.mnallamalli97.lahacks2020.R;
 import com.example.mnallamalli97.lahacks2020.User;
-import com.example.mnallamalli97.lahacks2020.network.GamifyClient;
-import com.example.mnallamalli97.lahacks2020.network.RetrofitClientInstance;
+import com.example.mnallamalli97.lahacks2020.utilities.GamifyClient;
+import com.example.mnallamalli97.lahacks2020.utilities.NetworkUtils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -21,11 +21,6 @@ import com.google.android.gms.tasks.Task;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //init Google sign in options
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.server_client_id))
                 .requestEmail()
                 .build();
 
@@ -87,13 +83,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private void sendEmailIDToServer(String name, String email){
 
-        GamifyClient client = RetrofitClientInstance.getGamifyClient();
+        GamifyClient client = NetworkUtils.getGamifyClient();
         client.login(name, email).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 //200 means already signed in
                 //201 means new user
                 //TODO: here is where we decide to take the user to another screen
+                Log.w("TAG", "signInResult:status code=" + response.code());
+
             }
 
             @Override

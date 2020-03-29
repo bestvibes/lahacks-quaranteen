@@ -16,7 +16,7 @@ from django.core import serializers
 from rest_framework.views import APIView 
 from gamify.models import User
 
-@api_view(['POST'])
+
 def login(request, format=None):
 	email = request.POST['email']
 	response = HttpResponse()
