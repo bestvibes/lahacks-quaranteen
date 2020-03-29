@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.OnTa
         setContentView(R.layout.activity_main);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.getMenu().findItem(R.id.navigation_dashboard).setChecked(true);
 
         recycler = findViewById(R.id.tasksRecyclerView);
 
