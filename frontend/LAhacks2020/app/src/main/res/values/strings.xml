@@ -4,5 +4,9 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="login_welcome">Welcome to being quarantined, Please Login to continue </string>
     <string name="login_button">Login with Google</string>
+    <string name="server_client_id">35403600505-ekj69vc3h20svv25j4am2jkmb1da35lq.apps.googleusercontent.com</string>
+
+
+
 
 </resources>

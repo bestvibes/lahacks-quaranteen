@@ -1,7 +1,7 @@
 package com.example.mnallamalli97.lahacks2020.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mnallamalli97.lahacks2020.R;
 

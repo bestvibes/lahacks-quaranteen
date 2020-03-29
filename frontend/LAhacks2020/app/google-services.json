@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "35403600505",
+    "firebase_url": "https://quarantine-n-chill-b5052.firebaseio.com",
+    "project_id": "quarantine-n-chill-b5052",
+    "storage_bucket": "quarantine-n-chill-b5052.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35403600505:android:9f0533f082dd68f4163aa8",
+        "android_client_info": {
+          "package_name": "com.example.mnallamalli97.lahacks2020"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35403600505-lt0msa6h8vnkpehijnc1k60pdnhc7cui.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mnallamalli97.lahacks2020",
+            "certificate_hash": "ebc1abe8dbcab9ec2c6d525a01612b3559289e8d"
+          }
+        },
+        {
+          "client_id": "35403600505-ekj69vc3h20svv25j4am2jkmb1da35lq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdZRZo3yzHmCij3qVnZsWlKfXnD3YZI4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35403600505-ekj69vc3h20svv25j4am2jkmb1da35lq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
