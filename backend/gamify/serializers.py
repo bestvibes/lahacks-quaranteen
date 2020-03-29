@@ -8,6 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class TeamSerializer(serializers.ModelSerializer):
+    members = UserSerializer(many=True, read_only=True)
     class Meta:
         model = Team
         fields = "__all__"
@@ -31,6 +32,8 @@ class TaskInstanceSerializer(serializers.ModelSerializer):
         fields = "__all__"
         
 class ChallengeInstanceSerializer(serializers.ModelSerializer):
+    challenge = MasterChallengeSerializer(read_only=True)
+    teams = TeamSerializer(many=True, read_only=True)
     tasks = TaskInstanceSerializer(many=True, read_only=True)
     class Meta:
         model = ChallengeInstance
