@@ -7,9 +7,14 @@ import com.example.mnallamalli97.lahacks2020.pojo.UserIdJoinCode;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface TeamService {
+
+    @GET("/models/teams/{id}")
+    Call<Team> getTeamById(@Path("id") int id);
 
     @POST("/team/create/")
     Call<Team> createTeam(@Body NameUserId body);

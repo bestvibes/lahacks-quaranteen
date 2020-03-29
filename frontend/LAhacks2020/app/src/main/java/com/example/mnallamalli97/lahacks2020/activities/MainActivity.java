@@ -3,22 +3,21 @@ package com.example.mnallamalli97.lahacks2020.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.MenuItem;
-import android.widget.TextView;
-
 import com.example.mnallamalli97.lahacks2020.MasterTask;
 import com.example.mnallamalli97.lahacks2020.R;
 import com.example.mnallamalli97.lahacks2020.TasksAdapter;
+import com.example.mnallamalli97.lahacks2020.TeamDataViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
         recycler.setLayoutManager(layoutManager);
         listAdapter = new TasksAdapter(tasksList, this);
         recycler.setAdapter(listAdapter);
+
+        TextView teamName = findViewById(R.id.teamNameTextView);
+        teamName.setText(TeamDataViewModel.getTeamData().getValue().getTeamName());
+        TextView teamCode = findViewById(R.id.shareCodeTextView);
+        teamCode.setText(TeamDataViewModel.getTeamData().getValue().getJoinCode());
 
         //Load the date from the network or other resources
         //into the array list asynchronously

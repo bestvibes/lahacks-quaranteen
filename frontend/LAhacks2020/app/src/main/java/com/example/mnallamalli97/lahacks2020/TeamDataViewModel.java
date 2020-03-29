@@ -21,6 +21,22 @@ public class TeamDataViewModel extends ViewModel {
         team = new MutableLiveData<Team>();
     }*/
 
+    public static void getTeamById(int team_id){
+        TeamService service = NetworkUtils.getRetrofitInstance().create(TeamService.class);
+        Call<Team> call = service.getTeamById(team_id);
+        call.enqueue(new Callback<Team>() {
+            @Override
+            public void onResponse(Call<Team> call, Response<Team> response) {
+                teamLiveData.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Team> call, Throwable t) {
+                teamLiveData.setValue(null);
+            }
+        });
+    }
+
     public static void createTeam(String name, int user_id){
         TeamService service = NetworkUtils.getRetrofitInstance().create(TeamService.class);
         NameUserId nameUserId = new NameUserId(name, user_id);
