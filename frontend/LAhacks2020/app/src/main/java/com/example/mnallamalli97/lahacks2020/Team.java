@@ -10,7 +10,7 @@ public class Team {
     private User[] teamMembers;
     @SerializedName("name")
     private String teamName;
-    @SerializedName("joinCode")
+    @SerializedName("join_code")
     private String joinCode;
     @SerializedName("leader")
     private User leader;
