@@ -6,6 +6,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 from rest_framework.viewsets import ModelViewSet
+from rest_framework import permissions
 
 from gamify.models import Team, User, ChallengeInstance, TaskInstance, MasterChallenge, MasterTask
 from gamify.serializers import UserSerializer, ChallengeInstanceSerializer, MasterChallengeSerializer, MasterTaskSerializer, TaskInstanceSerializer, TeamSerializer
@@ -14,6 +15,8 @@ from django.http import HttpResponse
 from rest_framework.views import APIView 
 from gamify.models import User
 
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
 @api_view(['POST'])
 def login(request, format=None):
@@ -179,3 +182,13 @@ class TeamViewSet(ModelViewSet):
     """
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Gamify API",
+        default_version='v1',
+        description="Gamifying the quarantine",
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny, ),
+)

@@ -2,7 +2,7 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from gamify.views import createTeam, joinChallenge, joinTeam, leaveTeam, login, getUserTasks, ChallengeInstanceViewSet, UserViewSet, MasterChallengeViewSet, MasterTaskViewSet, TaskInstanceViewSet, TeamViewSet
+from gamify.views import createTeam, joinChallenge, joinTeam, leaveTeam, login, getUserTasks, ChallengeInstanceViewSet, UserViewSet, MasterChallengeViewSet, MasterTaskViewSet, TaskInstanceViewSet, TeamViewSet, schema_view
 from gamify.verification.views import verifyApple, verifyVideo, verifyBook, verifySunrise
 
 router = DefaultRouter()
@@ -25,4 +25,7 @@ urlpatterns = [
     path('verify/video/', verifyVideo, name='verify-video'),
     path('verify/book/', verifyBook, name='verify-book'),
     path('verify/sunrise/', verifySunrise, name='verify-sunrise'),
+    path('docs/',
+         schema_view.with_ui('swagger', cache_timeout=0),
+         name='schema-swagger-ui'),
 ]
