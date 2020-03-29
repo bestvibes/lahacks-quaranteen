@@ -16,13 +16,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class VerificationViewModel extends ViewModel {
-    private MutableLiveData<Verification> verification;
+    private static MutableLiveData<Verification> verification;
 
-    public VerificationViewModel(){
-        verification = new MutableLiveData<Verification>();
-    }
+//    public VerificationViewModel(){
+//        verification = new MutableLiveData<Verification>();
+//    }
 
-    public void verifyApple(int user_id, File image){
+    public static void verifyApple(int user_id, File image){
         VerificationService service = NetworkUtils.getRetrofitInstance().create(VerificationService.class);
         RequestBody img = RequestBody.create(MediaType.parse("image/*"), image);
         Call<Verification> call = service.verifyApple(user_id, img);
@@ -39,7 +39,7 @@ public class VerificationViewModel extends ViewModel {
         });
     }
 
-    public void verifyVideo(int user_id, File image){
+    public static void verifyVideo(int user_id, File image){
         VerificationService service = NetworkUtils.getRetrofitInstance().create(VerificationService.class);
         RequestBody img = RequestBody.create(MediaType.parse("image/*"), image);
         Call<Verification> call = service.verifyVideo(user_id, img);
@@ -56,7 +56,7 @@ public class VerificationViewModel extends ViewModel {
         });
     }
 
-    public void verifyBook(int user_id, File image){
+    public static void verifyBook(int user_id, File image){
         VerificationService service = NetworkUtils.getRetrofitInstance().create(VerificationService.class);
         RequestBody img = RequestBody.create(MediaType.parse("image/*"), image);
         Call<Verification> call = service.verifyBook(user_id, img);
@@ -73,7 +73,7 @@ public class VerificationViewModel extends ViewModel {
         });
     }
 
-    public void verifySunrise(int user_id, File image){
+    public static void verifySunrise(int user_id, File image){
         VerificationService service = NetworkUtils.getRetrofitInstance().create(VerificationService.class);
         RequestBody img = RequestBody.create(MediaType.parse("image/*"), image);
         Call<Verification> call = service.verifySunrise(user_id, img);

@@ -13,13 +13,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ChallengeViewModel extends ViewModel {
-    private MutableLiveData<ChallengeInstance> challenge;
+    private static MutableLiveData<ChallengeInstance> challenge;
 
 //    public ChallengeViewModel(){
 //        challenge = new MutableLiveData<ChallengeInstance>();
 //    }
 
-    public void joinChallenge(int challenge_id, int team_id, int user_id){
+    public static void joinChallenge(int challenge_id, int team_id, int user_id){
         ChallengeService service = NetworkUtils.getRetrofitInstance().create(ChallengeService.class);
         ChallengeIdTeamIdUserId body = new ChallengeIdTeamIdUserId(challenge_id, team_id, user_id);
         Call<ChallengeInstance> call = service.joinChallenge(body);
@@ -36,7 +36,7 @@ public class ChallengeViewModel extends ViewModel {
         });
     }
 
-    public LiveData<ChallengeInstance> getChallenge(){
+    public static LiveData<ChallengeInstance> getChallenge(){
         return challenge;
     }
 }
