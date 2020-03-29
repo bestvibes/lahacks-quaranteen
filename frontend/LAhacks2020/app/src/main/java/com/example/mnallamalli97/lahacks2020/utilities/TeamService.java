@@ -18,7 +18,6 @@ public interface TeamService {
     Call<Team> leaveTeam(@Body UserId body);
 
     @POST("/team/join/")
-    //Call<Team> joinTeam(@Field("user_id") int user_id, @Field("join_code") String join_code);
     Call<Team> joinTeam(@Body UserIdJoinCode body);
 
 }

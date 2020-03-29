@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.mnallamalli97.lahacks2020.pojo.UserId;
 import com.example.mnallamalli97.lahacks2020.utilities.NetworkUtils;
 import com.example.mnallamalli97.lahacks2020.utilities.TaskService;
 
@@ -16,13 +17,14 @@ import retrofit2.Response;
 public class TaskViewModel extends ViewModel {
     private MutableLiveData<List<TaskInstance>> tasks;
 
-    public TaskViewModel(){
-        tasks = new MutableLiveData<List<TaskInstance>>();
-    }
+//    public TaskViewModel(){
+//        tasks = new MutableLiveData<List<TaskInstance>>();
+//    }
 
     public void getTasksByUser(int user_id){
         TaskService service = NetworkUtils.getRetrofitInstance().create(TaskService.class);
-        Call<List<TaskInstance>> call = service.getUserTasks(user_id);
+        UserId body = new UserId(user_id);
+        Call<List<TaskInstance>> call = service.getUserTasks(body);
         call.enqueue(new Callback<List<TaskInstance>>() {
             @Override
             public void onResponse(Call<List<TaskInstance>> call, Response<List<TaskInstance>> response) {

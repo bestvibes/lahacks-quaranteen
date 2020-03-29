@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.mnallamalli97.lahacks2020.pojo.ChallengeIdTeamIdUserId;
 import com.example.mnallamalli97.lahacks2020.utilities.ChallengeService;
 import com.example.mnallamalli97.lahacks2020.utilities.NetworkUtils;
 
@@ -14,13 +15,14 @@ import retrofit2.Response;
 public class ChallengeViewModel extends ViewModel {
     private MutableLiveData<ChallengeInstance> challenge;
 
-    public ChallengeViewModel(){
-        challenge = new MutableLiveData<ChallengeInstance>();
-    }
+//    public ChallengeViewModel(){
+//        challenge = new MutableLiveData<ChallengeInstance>();
+//    }
 
     public void joinChallenge(int challenge_id, int team_id, int user_id){
         ChallengeService service = NetworkUtils.getRetrofitInstance().create(ChallengeService.class);
-        Call<ChallengeInstance> call = service.joinChallenge(challenge_id, team_id, user_id);
+        ChallengeIdTeamIdUserId body = new ChallengeIdTeamIdUserId(challenge_id, team_id, user_id);
+        Call<ChallengeInstance> call = service.joinChallenge(body);
         call.enqueue(new Callback<ChallengeInstance>() {
             @Override
             public void onResponse(Call<ChallengeInstance> call, Response<ChallengeInstance> response) {
