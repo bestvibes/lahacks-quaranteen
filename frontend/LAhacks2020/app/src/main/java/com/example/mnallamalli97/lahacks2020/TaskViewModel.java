@@ -15,13 +15,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TaskViewModel extends ViewModel {
-    private MutableLiveData<List<TaskInstance>> tasks;
+    private static MutableLiveData<List<TaskInstance>> tasks;
 
 //    public TaskViewModel(){
 //        tasks = new MutableLiveData<List<TaskInstance>>();
 //    }
 
-    public void getTasksByUser(int user_id){
+    public static void getTasksByUser(int user_id){
         TaskService service = NetworkUtils.getRetrofitInstance().create(TaskService.class);
         UserId body = new UserId(user_id);
         Call<List<TaskInstance>> call = service.getUserTasks(body);
@@ -38,7 +38,7 @@ public class TaskViewModel extends ViewModel {
         });
     }
 
-    public LiveData<List<TaskInstance>> getUserTasks(){
+    public static LiveData<List<TaskInstance>> getUserTasks(){
         return tasks;
     }
 }
