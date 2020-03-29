@@ -1,19 +1,19 @@
 package com.example.mnallamalli97.lahacks2020.activities;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.mnallamalli97.lahacks2020.R;
-import com.example.mnallamalli97.lahacks2020.User;
-import com.example.mnallamalli97.lahacks2020.UserDataViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
+                    return true;
+                case R.id.navigation_settings:
+                    Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+                    startActivity(settingsIntent);
                     return true;
             }
             return false;

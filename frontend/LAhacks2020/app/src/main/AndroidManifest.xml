@@ -26,6 +26,12 @@
             android:label="@string/app_name">
         </activity>
 
+        <activity android:name=".activities.SettingsActivity"></activity>
+        <activity android:name=".activities.CreateJoinPartyActivity"></activity>
+        <activity android:name=".activities.SharePartyActivity"></activity>
+        <activity android:name=".activities.JoinPartyActivity"></activity>
+        <activity android:name=".activities.CreatePartyActivity"></activity>
+
 
 
     </application>
