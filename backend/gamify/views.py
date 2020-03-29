@@ -180,6 +180,20 @@ def getUserTasks(request):
         status=200, safe=False
     )
 
+@api_view(['POST'])
+def createUserTask(request):
+    """
+    Create a task for a user.
+    inputs: JSON with one field "user_id", "date" ("2020-03-29"), "completed", "master_task_id", "challenge_id"
+    """
+    data = JSONParser().parse(request)
+    task = TaskInstance.objects.create(user=User.objects.get(id=data["user_id"]), date=data["date"], completed=data["completed"], masterTask=MasterTask.objects.get(id=data["master_task_id"]), challenge=ChallengeInstance.objects.get(id=data["challenge_id"]))
+    return JsonResponse(
+        TaskInstanceSerializer(task).data, 
+        status=200, safe=False
+    )
+
+
 
 class MasterChallengeViewSet(ModelViewSet):
     """
