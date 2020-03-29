@@ -3,6 +3,7 @@ package com.example.mnallamalli97.lahacks2020.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -19,7 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TasksAdapter.OnTaskListener {
 
     private TasksAdapter listAdapter;
     private ArrayList<MasterTask> tasksList = new ArrayList<>();
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(layoutManager);
-        listAdapter = new TasksAdapter(tasksList, this);
+        listAdapter = new TasksAdapter(tasksList, this, this);
         recycler.setAdapter(listAdapter);
 
         TextView teamName = findViewById(R.id.teamNameTextView);
@@ -81,4 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onTaskClick(int position) {
+        Log.d("TAG", "onTaskClick: clicked");
+        tasksList.get(position);
+        Intent intent = new Intent(this, TaskActivity.class);
+        startActivity(intent);
+    }
 }
