@@ -9,29 +9,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:background="@drawable/custom_border"
+        android:padding="3dp">
 
         <TextView
             android:id="@+id/taskName"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="Task Name"
             android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="20sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/taskDescription"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="Task Description"
             android:textAlignment="center"
-            android:textColor="#000"
+            android:textColor="#FFFFFF"
             android:textSize="12sp" />
-
-
     </LinearLayout>
 
 
