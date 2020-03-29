@@ -31,6 +31,7 @@ import java.util.Date;
 public class TaskActivity extends AppCompatActivity {
 
     private Button cameraButton;
+    private TextView textView2;
     Uri imageUri;
     String mCameraFileName;
     TaskInstance task;
@@ -43,7 +44,7 @@ public class TaskActivity extends AppCompatActivity {
         task = TaskViewModel.getUserTasks().getValue().get(getIntent().getIntExtra("task", 0));
         TextView header = findViewById(R.id.taskNameTextview);
         header.setText(task.getMasterTask().getName());
-
+        textView2 = findViewById(R.id.textView2);
         cameraButton = findViewById(R.id.cameraButton);
 
         cameraButton.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +60,7 @@ public class TaskActivity extends AppCompatActivity {
             public void onChanged(Verification verification) {
                 if (verification == null){
                     Toast.makeText(TaskActivity.this, "Verification successful!", Toast.LENGTH_SHORT).show();
+                    textView2.setText("Completed");
                     return;
                 }
                 Log.d("Verification", "verified " + verification.isVerified());

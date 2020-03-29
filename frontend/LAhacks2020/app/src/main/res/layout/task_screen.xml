@@ -23,20 +23,6 @@
         app:layout_constraintVertical_bias="0.053" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="275dp"
-        android:layout_height="58dp"
-        android:gravity="center|clip_vertical"
-        android:text="COMPLETED"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.136" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="351dp"
         android:layout_height="58dp"
@@ -46,32 +32,9 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.514" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/completedRecyclerView"
-        android:layout_width="348dp"
-        android:layout_height="192dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.276" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notCompletedRecyclerView"
-        android:layout_width="359dp"
-        android:layout_height="253dp"
-        android:layout_marginTop="7dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.842" />
+        app:layout_constraintVertical_bias="0.205" />
 
     <Button
         android:id="@+id/cameraButton"
