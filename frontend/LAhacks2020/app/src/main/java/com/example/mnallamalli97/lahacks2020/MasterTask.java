@@ -8,7 +8,7 @@ public class MasterTask {
     @SerializedName("name")
     private String name;
     @SerializedName("challenge")
-    private MasterChallenge masterChallenge;
+    private Integer masterChallenge;
     @SerializedName("description")
     private String description;
     @SerializedName("verification_url")
@@ -16,7 +16,7 @@ public class MasterTask {
     @SerializedName("point_value")
     private int pointValue;
 
-    public MasterTask(int id, String name, MasterChallenge masterChallenge, String description, String verificationMLModelURL, int pointValue){
+    public MasterTask(int id, String name, Integer masterChallenge, String description, String verificationMLModelURL, int pointValue){
         this.id = id;
         this.name = name;
         this.masterChallenge = masterChallenge;
@@ -33,7 +33,7 @@ public class MasterTask {
         return name;
     }
 
-    public MasterChallenge getMasterChallenge() {
+    public Integer getMasterChallenge() {
         return masterChallenge;
     }
 

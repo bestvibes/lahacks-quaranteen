@@ -6,12 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> {
 
@@ -34,7 +32,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
         // Inflate the layout view you have created for the list rows here
-        View view = layoutInflater.inflate(R.layout.teammate_row_item, parent, false);
+        View view = layoutInflater.inflate(R.layout.tasks_row_item, parent, false);
         return new ViewHolder(view, mOnTaskListener);
     }
 
@@ -48,7 +46,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final TaskInstance task = tasksList.get(position);
         // Set the data to the views here
-        holder.setTaskName(task.getMasterTask().getMasterChallenge().getName());
+        holder.setTaskName(task.getMasterTask().getName());
     }
 
     // This is your ViewHolder class that helps to populate data to the view

@@ -6,17 +6,17 @@ public class TaskInstance {
     @SerializedName("id")
     private int id;
     @SerializedName("user")
-    private User user;
+    private Integer user;
     @SerializedName("date")
     private String date;
-    @SerializedName("task")
+    @SerializedName("masterTask")
     private MasterTask masterTask;
     @SerializedName("challenge")
-    private ChallengeInstance challenge;
+    private Integer challenge;
     @SerializedName("completed")
     private boolean verified;
 
-    public TaskInstance(int id, User user, String date, MasterTask masterTask, boolean verified, ChallengeInstance challenge){
+    public TaskInstance(int id, Integer user, String date, MasterTask masterTask, boolean verified, Integer challenge){
         this.user = user;
         this.date = date;
         this.masterTask = masterTask;
@@ -25,7 +25,7 @@ public class TaskInstance {
         this.challenge = challenge;
     }
 
-    public User getUser() {
+    public Integer getUser() {
         return user;
     }
 
@@ -45,7 +45,7 @@ public class TaskInstance {
         return id;
     }
 
-    public ChallengeInstance getChallenge() {
+    public Integer getChallenge() {
         return challenge;
     }
 }

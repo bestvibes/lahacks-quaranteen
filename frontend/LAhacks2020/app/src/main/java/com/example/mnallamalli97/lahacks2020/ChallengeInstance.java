@@ -6,7 +6,7 @@ public class ChallengeInstance {
     @SerializedName("id")
     private int id;
     @SerializedName("challenge")
-    private MasterChallenge masterChallenge;
+    private Integer masterChallenge;
     @SerializedName("teams")
     private int[] teams;
     @SerializedName("tasks")
@@ -16,7 +16,7 @@ public class ChallengeInstance {
     @SerializedName("scores")
     private int[] scores;
 
-    public ChallengeInstance(int id, MasterChallenge challenge, TaskInstance[] tasks, int[] teams, String start_time, int[] scores){
+    public ChallengeInstance(int id, Integer challenge, TaskInstance[] tasks, int[] teams, String start_time, int[] scores){
         this.id = id;
         this.tasks = tasks;
         this.masterChallenge = challenge;
@@ -33,7 +33,7 @@ public class ChallengeInstance {
         return tasks;
     }
 
-    public MasterChallenge getMasterChallenge() {
+    public Integer getMasterChallenge() {
         return masterChallenge;
     }
 

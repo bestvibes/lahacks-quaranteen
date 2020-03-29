@@ -33,6 +33,7 @@ public class TaskViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<List<TaskInstance>> call, Throwable t) {
+                t.printStackTrace();
                 tasks.setValue(null);
             }
         });
