@@ -36,7 +36,7 @@ class MasterChallenge(models.Model):
 
 
 class ChallengeInstance(models.Model):
-    challenge = models.ForeignKey(MasterChallenge, related_name="challenge_instances", on_delete=models.CASCADE, blank=False, null=False)  # many-to-one
+    masterChallenge = models.ForeignKey(MasterChallenge, related_name="challenge_instances", on_delete=models.CASCADE, blank=False, null=False)  # many-to-one
     teams = models.ManyToManyField(Team, blank=True)  # many-to-many
     scores = models.ManyToManyField(TeamScore, blank=True)  # many-to-many
     start_time = models.DateTimeField(blank=False, null=False)
