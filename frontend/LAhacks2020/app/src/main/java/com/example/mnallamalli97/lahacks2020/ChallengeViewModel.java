@@ -13,7 +13,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ChallengeViewModel extends ViewModel {
-    private static MutableLiveData<ChallengeInstance> challenge;
+    private static MutableLiveData<ChallengeInstance> challenge = new MutableLiveData<ChallengeInstance>();
 
 //    public ChallengeViewModel(){
 //        challenge = new MutableLiveData<ChallengeInstance>();

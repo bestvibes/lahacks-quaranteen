@@ -16,7 +16,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class VerificationViewModel extends ViewModel {
-    private static MutableLiveData<Verification> verification;
+    private static MutableLiveData<Verification> verification = new MutableLiveData<Verification>();
 
 //    public VerificationViewModel(){
 //        verification = new MutableLiveData<Verification>();
@@ -90,7 +90,7 @@ public class VerificationViewModel extends ViewModel {
         });
     }
 
-    public LiveData<Verification> getVerification(){
+    public static LiveData<Verification> getVerification(){
         return verification;
     }
 }

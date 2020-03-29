@@ -3,20 +3,26 @@ package com.example.mnallamalli97.lahacks2020;
 import com.google.gson.annotations.SerializedName;
 
 public class TaskInstance {
+    @SerializedName("id")
+    private int id;
     @SerializedName("user")
     private User user;
-    @SerializedName("day")
-    private String day;
-    @SerializedName("masterTask")
+    @SerializedName("date")
+    private String date;
+    @SerializedName("task")
     private MasterTask masterTask;
-    @SerializedName("verified")
+    @SerializedName("challenge")
+    private ChallengeInstance challenge;
+    @SerializedName("completed")
     private boolean verified;
 
-    public TaskInstance(User user, String day, MasterTask masterTask, boolean verified){
+    public TaskInstance(int id, User user, String date, MasterTask masterTask, boolean verified, ChallengeInstance challenge){
         this.user = user;
-        this.day = day;
+        this.date = date;
         this.masterTask = masterTask;
         this.verified = verified;
+        this.id = id;
+        this.challenge = challenge;
     }
 
     public User getUser() {
@@ -24,7 +30,7 @@ public class TaskInstance {
     }
 
     public String getDay() {
-        return day;
+        return date;
     }
 
     public MasterTask getMasterTask() {
@@ -33,5 +39,13 @@ public class TaskInstance {
 
     public boolean isVerified() {
         return verified;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public ChallengeInstance getChallenge() {
+        return challenge;
     }
 }

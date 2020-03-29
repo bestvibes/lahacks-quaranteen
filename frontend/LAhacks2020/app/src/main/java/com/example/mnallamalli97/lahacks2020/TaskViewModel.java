@@ -15,7 +15,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TaskViewModel extends ViewModel {
-    private static MutableLiveData<List<TaskInstance>> tasks;
+    private static MutableLiveData<List<TaskInstance>> tasks = new MutableLiveData<List<TaskInstance>>();
 
 //    public TaskViewModel(){
 //        tasks = new MutableLiveData<List<TaskInstance>>();
