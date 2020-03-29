@@ -16,12 +16,13 @@ import java.util.List;
 
 public class UserDataViewModel extends ViewModel {
     private MutableLiveData<List<User>> users;
+    private MutableLiveData<User> updatedUser;
 
     public UserDataViewModel() {
         users = new MutableLiveData<List<User>>();
     }
 
-    public void loadData() {
+    public void loadListUsers() {
         if (users.getValue() == null){
             UserService service = NetworkUtils.getRetrofitInstance().create(UserService.class);
             Call<List<User>> call = service.listUsers();
