@@ -1,9 +1,9 @@
 package com.example.mnallamalli97.lahacks2020;
 
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -12,32 +12,34 @@ import retrofit2.Response;
 import com.example.mnallamalli97.lahacks2020.utilities.NetworkUtils;
 import com.example.mnallamalli97.lahacks2020.utilities.UserService;
 
+import java.util.List;
+
 public class UserDataViewModel extends ViewModel {
-    private MutableLiveData<User> user;
+    private MutableLiveData<List<User>> users;
 
     public UserDataViewModel() {
-        user = new MutableLiveData<User>();
+        users = new MutableLiveData<List<User>>();
     }
 
     public void loadData() {
-        if (user.getValue() == null){
+        if (users.getValue() == null){
             UserService service = NetworkUtils.getRetrofitInstance().create(UserService.class);
-            Call<User> call = service.getUser();
-            call.enqueue(new Callback<User>() {
+            Call<List<User>> call = service.listUsers();
+            call.enqueue(new Callback<List<User>>() {
                 @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    user.setValue(response.body());
+                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                    users.setValue(response.body());
                 }
 
                 @Override
-                public void onFailure(Call<User> call, Throwable t) {
-                    user.setValue(null);
+                public void onFailure(Call<List<User>> call, Throwable t) {
+                    users.setValue(null);
                 }
             });
         }
     }
 
-    public LiveData<User> getLiveData(){
-        return user;
+    public LiveData<List<User>> getLiveData(){
+        return users;
     }
 }
