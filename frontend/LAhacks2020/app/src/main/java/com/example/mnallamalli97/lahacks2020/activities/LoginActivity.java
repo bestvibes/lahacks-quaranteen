@@ -94,10 +94,10 @@ public class LoginActivity extends AppCompatActivity {
                 //TODO: here is where we decide to take the user to another screen
                 Log.w("TAG", "signInResult:status code=" + response.code());
 
-                if(response.code() == 201){
+                if(response.body().getTeam() == null){
                     Intent intent = new Intent(LoginActivity.this, CreateJoinPartyActivity.class);
                     startActivity(intent);
-                } else if (response.code() == 200) {
+                } else {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
