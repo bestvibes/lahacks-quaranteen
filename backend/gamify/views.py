@@ -28,20 +28,16 @@ from drf_yasg import openapi
 @api_view(['POST'])
 def login(request, format=None):
 	email = request.POST['email']
-	response = HttpResponse()
+
 	try:
 		u = User.objects.get(email=email)
 		user_serialized = UserSerializer(u).data
-		response.status_code = 200
-		response.content = user_serialized
-		return response
+		return JsonResponse(user_serialized, status=200, safe=False)
 	except User.DoesNotExist:
 		u = User(email=email, name=request.POST['name'])
 		u.save()
 		user_serialized = UserSerializer(u).data
-		response.content = user_serialized
-		response.status_code = 201
-		return response
+		return JsonResponse(user_serialized, status=200, safe=False)
 
 
 @api_view(['POST'])
