@@ -83,7 +83,7 @@ def leaveTeam(request):
 def joinTeam(request):
     """
     Join a team
-    inputs: JSON with three field "user_id", "join_code"
+    inputs: JSON with two field "user_id", "join_code"
     """
     data = JSONParser().parse(request)
     team_to_join = Team.objects.get(join_code=data["join_code"])
