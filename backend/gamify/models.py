@@ -1,6 +1,11 @@
 import datetime
+import os
 
 from django.db import models
+
+
+def get_image_path(instance, filename):
+    return os.path.join('photos', filename)
 
 
 class Team(models.Model):
@@ -13,6 +18,7 @@ class User(models.Model):
     email = models.CharField(max_length=100, blank=False, null=False)
     team = models.ForeignKey(Team, related_name="members", on_delete=models.SET_NULL, blank=True, null=True)  # many-to-one
     team_leader = models.BooleanField(blank=False, null=False, default=False)
+    profile_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
 
 
 class TeamScore(models.Model):

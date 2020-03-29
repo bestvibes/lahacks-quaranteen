@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Team {
 
+    @SerializedName("id")
+    private int id;
     @SerializedName("members")
     private User[] teamMembers;
     @SerializedName("name")
@@ -13,11 +15,16 @@ public class Team {
     @SerializedName("leader")
     private User leader;
 
-    public Team(User[] teamMembers, String teamName, String joinCode, User leader){
+    public Team(int id, User[] teamMembers, String teamName, String joinCode, User leader){
+        this.id = id;
         this.teamMembers = teamMembers;
         this.teamName = teamName;
         this.joinCode = joinCode;
         this.leader = leader;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public User[] getTeamMembers(){

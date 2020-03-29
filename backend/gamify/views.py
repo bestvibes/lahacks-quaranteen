@@ -8,8 +8,14 @@ from rest_framework.parsers import JSONParser
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import permissions
 
-from gamify.models import Team, User, ChallengeInstance, TaskInstance, MasterChallenge, MasterTask
-from gamify.serializers import UserSerializer, ChallengeInstanceSerializer, MasterChallengeSerializer, MasterTaskSerializer, TaskInstanceSerializer, TeamSerializer
+from gamify.models import (
+    Team, User, ChallengeInstance,
+    TaskInstance, MasterChallenge, MasterTask
+)
+from gamify.serializers import (
+    UserSerializer, ChallengeInstanceSerializer, MasterChallengeSerializer, 
+    MasterTaskSerializer, TaskInstanceSerializer, TeamSerializer
+)
 from django.http import HttpResponse
 
 from rest_framework.views import APIView 
@@ -18,23 +24,37 @@ from gamify.models import User
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+
 @api_view(['POST'])
 def login(request, format=None):
 	email = request.POST['email']
-	response = HttpResponse()
+
 	try:
 		u = User.objects.get(email=email)
 		user_serialized = UserSerializer(u).data
-		response.status_code = 200
-		response.content = user_serialized
-		return response
+		return JsonResponse(user_serialized, status=200, safe=False)
 	except User.DoesNotExist:
 		u = User(email=email, name=request.POST['name'])
 		u.save()
 		user_serialized = UserSerializer(u).data
-		response.content = user_serialized
-		response.status_code = 201
-		return response
+		return JsonResponse(user_serialized, status=200, safe=False)
+
+
+@api_view(['POST'])
+def uploadProfilePic(request):
+    """
+    Upload user profile pic
+    inputs: JSON with two fields "user_id", "image"
+    """
+    data = JSONParser().parse(request)
+    img = request.FILES["image"]
+
+    user = User.objects.get(id=data["user_id"])
+    user.profile_image = img
+    user.save()
+
+    data = serializers.serialize("json", User.objects.get(id=data["user_id"]))
+    return JsonResponse(data, status=201, safe=False)
 
 
 @api_view(['POST'])
