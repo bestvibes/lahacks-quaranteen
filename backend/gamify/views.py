@@ -15,7 +15,6 @@ from django.core import serializers
 
 from rest_framework.views import APIView 
 from gamify.models import User
-# Create your views here.
 
 @api_view(['POST'])
 def login(request, format=None):
@@ -28,7 +27,7 @@ def login(request, format=None):
 		response.content = user_serialized
 		return response
 	except User.DoesNotExist:
-		u =	User(email=email, name=request.POST['name'])
+		u = User(email=email, name=request.POST['name'])
 		u.save()
 		user_serialized = serializers.serialize("json", [u])
 		response.content = user_serialized
