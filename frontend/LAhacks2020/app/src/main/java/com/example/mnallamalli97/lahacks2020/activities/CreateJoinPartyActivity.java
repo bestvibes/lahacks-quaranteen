@@ -1,6 +1,7 @@
 package com.example.mnallamalli97.lahacks2020.activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,7 +39,9 @@ public class CreateJoinPartyActivity extends AppCompatActivity {
                     Toast.makeText(CreateJoinPartyActivity.this, "Team does not exist!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Log.d("CreateJoinTeam", "Got team: " + team.toString());
+                Log.d("CreateJoinTeam", "Got team: " + team.getTeamName());
+                Intent intent = new Intent(CreateJoinPartyActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -48,6 +51,13 @@ public class CreateJoinPartyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 joinTeam();
+            }
+        });
+
+        createTeamButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createTeam();
             }
         });
     }
@@ -62,6 +72,23 @@ public class CreateJoinPartyActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         TeamDataViewModel.joinTeam(UserDataViewModel.getUpdatedUserLiveData().getValue().getUser_id(), editText.getText().toString());
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
+    }
+
+    private void createTeam() {
+        final EditText editText = new EditText(this);
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Create a Team")
+                .setMessage("Enter a team name:")
+                .setView(editText)
+                .setPositiveButton("Create", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TeamDataViewModel.createTeam(editText.getText().toString(), UserDataViewModel.getUpdatedUserLiveData().getValue().getUser_id());
                     }
                 })
                 .setNegativeButton("Cancel", null)

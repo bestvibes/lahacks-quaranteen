@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.mnallamalli97.lahacks2020.pojo.NameUserId;
+import com.example.mnallamalli97.lahacks2020.pojo.UserId;
 import com.example.mnallamalli97.lahacks2020.pojo.UserIdJoinCode;
 import com.example.mnallamalli97.lahacks2020.utilities.NetworkUtils;
 import com.example.mnallamalli97.lahacks2020.utilities.TeamService;
@@ -21,7 +23,8 @@ public class TeamDataViewModel extends ViewModel {
 
     public static void createTeam(String name, int user_id){
         TeamService service = NetworkUtils.getRetrofitInstance().create(TeamService.class);
-        Call<Team> call = service.createTeam(name, user_id);
+        NameUserId nameUserId = new NameUserId(name, user_id);
+        Call<Team> call = service.createTeam(nameUserId);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(Call<Team> call, Response<Team> response) {
@@ -37,7 +40,8 @@ public class TeamDataViewModel extends ViewModel {
 
     public static void leaveTeam(int user_id){
         TeamService service = NetworkUtils.getRetrofitInstance().create(TeamService.class);
-        Call<Team> call = service.leaveTeam(user_id);
+        UserId body = new UserId(user_id);
+        Call<Team> call = service.leaveTeam(body);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(Call<Team> call, Response<Team> response) {
