@@ -59,7 +59,7 @@ class MasterTask(models.Model):
 
 class TaskInstance(models.Model):
     challenge = models.ForeignKey(ChallengeInstance, related_name="tasks", on_delete=models.CASCADE, blank=False, null=False)
-    task = models.ForeignKey(MasterTask, related_name="instances", on_delete=models.CASCADE, blank=False, null=False)  # many-to-one
+    masterTask = models.ForeignKey(MasterTask, related_name="instances", on_delete=models.CASCADE, blank=False, null=False)  # many-to-one
     user = models.ForeignKey(User, related_name="tasks", on_delete=models.CASCADE, blank=False, null=False)  # many-to-one
     date = models.DateField()
     completed = models.BooleanField(blank=False, null=False)
