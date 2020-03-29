@@ -58,7 +58,7 @@ public class TaskActivity extends AppCompatActivity {
             @Override
             public void onChanged(Verification verification) {
                 if (verification == null){
-                    Toast.makeText(TaskActivity.this, "Verification unsuccessful!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TaskActivity.this, "Verification successful!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Log.d("Verification", "verified " + verification.isVerified());
@@ -102,16 +102,16 @@ public class TaskActivity extends AppCompatActivity {
                 if (UserDataViewModel.getUpdatedUserLiveData().getValue() != null){
                     int user_id = UserDataViewModel.getUpdatedUserLiveData().getValue().getUser_id();
                     String verificationURL = task.getMasterTask().getVerificationMLModelURL();
-                    if (verificationURL.equals("/verify/apple/")){
+                    if (verificationURL.equals("/verify/apple")){
                         VerificationViewModel.verifyApple(user_id, file);
                     }
-                else if (verificationURL.equals("/verify/video/")){
+                else if (verificationURL.equals("/verify/video")){
                         VerificationViewModel.verifyVideo(user_id, file);
                     }
-                    else if (verificationURL.equals("/verify/book/")){
+                    else if (verificationURL.equals("/verify/book")){
                         VerificationViewModel.verifyBook(user_id, file);
                     }
-                    else if (verificationURL.equals("/verify/sunrise/")){
+                    else if (verificationURL.equals("/verify/sunrise")){
                         VerificationViewModel.verifySunrise(user_id, file);
                     }
                 }
