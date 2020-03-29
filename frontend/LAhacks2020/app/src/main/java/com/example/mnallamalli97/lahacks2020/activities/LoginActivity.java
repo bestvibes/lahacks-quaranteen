@@ -7,8 +7,11 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import com.example.mnallamalli97.lahacks2020.R;
+import com.example.mnallamalli97.lahacks2020.Team;
+import com.example.mnallamalli97.lahacks2020.TeamDataViewModel;
 import com.example.mnallamalli97.lahacks2020.User;
 import com.example.mnallamalli97.lahacks2020.UserDataViewModel;
 import com.example.mnallamalli97.lahacks2020.utilities.GamifyClient;
@@ -100,8 +103,15 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, CreateJoinPartyActivity.class);
                     startActivity(intent);
                 } else {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    // Populate team
+                    TeamDataViewModel.getTeamData().observe(LoginActivity.this, new Observer<Team>() {
+                        @Override
+                        public void onChanged(Team team) {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    TeamDataViewModel.getTeamById(response.body().getTeam());
                 }
             }
 
